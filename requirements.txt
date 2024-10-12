@@ -2,3 +2,6 @@ python-dotenv
 asyncio
 telebot
 aiohttp
+sqlalchemy
+aiocron
+apscheduler

@@ -1,23 +1,151 @@
 import asyncio
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+import aiocron
 import telebot.async_telebot as telebot
+from sqlalchemy.ext.asyncio import AsyncSession
 from telebot import types
 import os
 from dotenv import (
     load_dotenv,
     find_dotenv
 )
-
 load_dotenv(
     find_dotenv()
 )
 
+from db.engine import (
+    session_maker,
+    drop_db,
+    create_db
+)
+
+from db.engine import session_maker
+from db.models import User
+from db.requests import add_user, get_user_by_id, get_all_users
+
+
 bot = telebot.AsyncTeleBot(
     token=os.getenv("BOT_TOKEN")
 )
-ADMIN_ID = os.getenv("ADMIN_1")
 
-@bot.message_handler(commands=['start', 'menu'])
+@bot.message_handler(commands=['start'])
 async def start(message):
+    async with session_maker() as session:
+        if await get_user_by_id(
+            session=session,
+            user_id=message.from_user.id
+        ) is None:
+            user = User(
+                telegram_id=message.from_user.id,
+                full_name=message.from_user.full_name,
+                username=message.from_user.username
+            )
+            await add_user(
+                session=session,
+                user=user,
+            )
+    keyboard = types.InlineKeyboardMarkup(
+        row_width=2
+    )
+    en_button = types.InlineKeyboardButton(
+        text="English 🇬🇧",
+        callback_data="en"
+    )
+    ru_button = types.InlineKeyboardButton(
+        text="Русский 🇷🇺",
+        callback_data="ru"
+    )
+    pl_button = types.InlineKeyboardButton(
+        text="Polski 🇵🇱",
+        callback_data="pl"
+    )
+    it_button = types.InlineKeyboardButton(
+        text="Italiano 🇮🇹",
+        callback_data="it"
+    )
+    cz_button = types.InlineKeyboardButton(
+        text="Český 🇨🇿",
+        callback_data="cz"
+    )
+    esp_button = types.InlineKeyboardButton(
+        text="Español 🇪🇸",
+        callback_data="esp"
+    )
+    lt_button = types.InlineKeyboardButton(
+        text="Latviešu 🇱🇻",
+        callback_data="lv"
+    )
+    bl_button = types.InlineKeyboardButton(
+        text="Belgium 🇧🇪",
+        callback_data="bl"
+    )
+    tr_button = types.InlineKeyboardButton(
+        text="Türkçe 🇹🇷",
+        callback_data="tr"
+    )
+    prt_button = types.InlineKeyboardButton(
+        text="Português 🇵🇹",
+        callback_data="prt"
+    )
+    rom_button = types.InlineKeyboardButton(
+        text="Română 🇷🇴",
+        callback_data="rom"
+    )
+    de_button = types.InlineKeyboardButton(
+        text="Deutch 🇩🇪",
+        callback_data="de"
+    )
+    keyboard.add(
+        en_button,
+        pl_button,
+        esp_button,
+        cz_button,
+        it_button,
+        lt_button,
+        bl_button,
+        tr_button,
+        rom_button,
+        prt_button,
+        de_button,
+        ru_button
+    )
+    await bot.send_message(
+        chat_id=message.chat.id,
+        text="Select language / Выберите язык",
+        reply_markup=keyboard
+    )
+    # Отправка сообщения через 15 минут
+    await asyncio.sleep(900)
+    await bot.send_message(
+        chat_id=message.chat.id,
+        text="⚡️Bonus will be active only for next 24 hours⚡️\n\n"
+             "Hurry up and take your bonus🎁"
+    )
+
+async def send_daily_notification():
+    async with session_maker() as session:
+        users = await get_all_users(session)  # Получаем всех пользователей
+        for user in users:
+            await bot.send_message(
+                chat_id=user.telegram_id,
+                text="⚡️Bonus will be active only for next 24 hours⚡️\n\n"
+                     "Hurry up and take your bonus🎁"
+            )
+
+# Функция для ежедневной рассылки в 18:00
+# @aiocron.crontab('49 1 * * *')  # cron-синтаксис для ежедневной рассылки в 18:00
+# async def send_daily_message():
+#     async with session_maker() as session:
+#         users = await get_all_users(session)  # Получаем всех пользователей
+#         for user in users:
+#             await bot.send_message(
+#                 chat_id=user.telegram_id,
+#                 text="⚡️Bonus will be active only for next 24 hours⚡️\n\n"
+#                      "Hurry up and take your bonus🎁"
+#             )
+
+@bot.message_handler(commands=['menu'])
+async def menu(message):
     keyboard = types.InlineKeyboardMarkup(
         row_width=2
     )
@@ -858,7 +986,19 @@ async def callback_inline(call):
             parse_mode="HTML"
         )
 
+async def on_startup():
+    scheduler.start()
+    run_param = False
+    if run_param:
+        await drop_db()
+
+    await create_db()
+
+scheduler = AsyncIOScheduler()
+scheduler.add_job(send_daily_notification, "cron", day_of_week="mon-sun", hour=18, minute=0)
+
 async def main():
+    await on_startup()
     await bot.polling(
         none_stop=True
     )
