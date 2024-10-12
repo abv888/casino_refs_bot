@@ -73,7 +73,7 @@ async def start(message):
     )
     lt_button = types.InlineKeyboardButton(
         text="Latviešu 🇱🇻",
-        callback_data="lv"
+        callback_data="lt"
     )
     bl_button = types.InlineKeyboardButton(
         text="Belgium 🇧🇪",
@@ -175,7 +175,7 @@ async def menu(message):
     )
     lt_button = types.InlineKeyboardButton(
         text="Latviešu 🇱🇻",
-        callback_data="lv"
+        callback_data="lt"
     )
     bl_button = types.InlineKeyboardButton(
         text="Belgium 🇧🇪",
@@ -843,7 +843,8 @@ async def callback_inline(call):
                     "⚡️Yaş sınırı yok🙅\n" \
                     "⚡️Hoşgeldin Bonusu <b><i>%500</i></b> para yatırma bonusu \n\n" \
                     "Promosyon - <b>BGGW</b>",
-        reply_markup=keyboard
+        reply_markup=keyboard,
+        parse_mode="HTML"
         )
     elif call.data == "rom":
         keyboard = types.InlineKeyboardMarkup(
