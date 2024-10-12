@@ -57,10 +57,6 @@ async def start(message):
         text="Türkçe 🇹🇷",
         callback_data="tr"
     )
-    fr_button = types.InlineKeyboardButton(
-        text="Français 🇫🇷",
-        callback_data="fr"
-    )
     prt_button = types.InlineKeyboardButton(
         text="Português 🇵🇹",
         callback_data="prt"
@@ -82,7 +78,6 @@ async def start(message):
         lt_button,
         bl_button,
         tr_button,
-        fr_button,
         rom_button,
         prt_button,
         de_button,
@@ -241,10 +236,6 @@ async def callback_inline(call):
             text="Ecuador 🇪🇨",
             callback_data="ecuador"
         )
-        espana_button = types.InlineKeyboardButton(
-            text="España 🇪🇸",
-            callback_data="espana"
-        )
         other_esp_button = types.InlineKeyboardButton(
             text="Otro país",
             callback_data="other_esp"
@@ -254,7 +245,6 @@ async def callback_inline(call):
             peru_button,
             chile_button,
             ecuador_button,
-            espana_button,
             other_esp_button
         )
         await bot.send_message(
@@ -268,23 +258,22 @@ async def callback_inline(call):
         )
         take_bonus_button = types.InlineKeyboardButton(
             text="🔥 Recir bono 🔥",
-            url="https://www.youtube.com/"
+            url="https://1wseqo.life/v3/aggressive-casino?p=nj92"
         )
         keyboard.add(
             take_bonus_button
         )
         await bot.send_photo(
-            photo=open(f"resources/1xslots.jpg", "rb"),
+            photo=open(f"resources/1win_esp.jpg", "rb"),
             chat_id=call.message.chat.id,
-            caption="😎 1XSLOTS - ¡el mejor proyecto para los jugadores de 🇲🇽 México! \n\n"
-                 "🚀 ¡Recoge tu paquete de bienvenida con 100 giros gratis y un bono del 100% en tu depósito!\n\n"
-                 "👉 Ventajas del 1XSLOTS Casino: \n"
-                 "⚡️ Bonos diarios\n"
-                 "⚡️ Alto RTP\n"
-                 "⚡️ Cajas de botín con premios increíbles\n"
-                 "⚡️ MUCHOS BONOS SIN DEPÓSITO\n\n"
-                 "Haz clic en el botón de abajo y empieza a jugar 👇",
-            reply_markup=keyboard
+            caption="Únete a 1WIN\n\n" \
+                    "⚡️Retiros rápidos a tarjetas de cualquier país \n" \
+                    "⚡️No se requiere verificación de documentos🪪\n" \
+                    "⚡️No hay límites de edad🙅\n" \
+                    "⚡️Bono de bienvenida del <b><i>500%</i></b> en tu primer depósito \n\n" \
+                    "Promoción - <b>BGGW</b>",
+            reply_markup=keyboard,
+            parse_mode="HTML"
         )
     elif call.data == "peru":
         keyboard = types.InlineKeyboardMarkup(
@@ -292,23 +281,22 @@ async def callback_inline(call):
         )
         take_bonus_button = types.InlineKeyboardButton(
             text="🔥 Recir bono 🔥",
-            url="https://www.youtube.com/"
+            url="https://1wseqo.life/v3/aggressive-casino?p=nj92"
         )
         keyboard.add(
             take_bonus_button
         )
         await bot.send_photo(
-            photo=open(f"resources/1xslots.jpg", "rb"),
+            photo=open(f"resources/1win_esp.jpg", "rb"),
             chat_id=call.message.chat.id,
-            caption="😎 1XSLOTS - ¡el mejor proyecto para los jugadores de 🇵🇪 Perú! \n\n"
-                 "🚀 ¡Recoge tu paquete de bienvenida con 100 giros gratis y un bono del 100% en tu depósito!\n\n"
-                 "👉 Ventajas del 1XSLOTS Casino: \n"
-                 "⚡️ Bonos diarios\n"
-                 "⚡️ Alto RTP\n"
-                 "⚡️ Cajas de botín con premios increíbles\n"
-                 "⚡️ MUCHOS BONOS SIN DEPÓSITO\n\n"
-                 "Haz clic en el botón de abajo y empieza a jugar 👇",
-            reply_markup=keyboard
+            caption="Únete a 1WIN\n\n" \
+                    "⚡️Retiros rápidos a tarjetas de cualquier país \n" \
+                    "⚡️No se requiere verificación de documentos🪪\n" \
+                    "⚡️No hay límites de edad🙅\n" \
+                    "⚡️Bono de bienvenida del <b><i>500%</i></b> en tu primer depósito \n\n" \
+                    "Promoción - <b>BGGW</b>",
+            reply_markup=keyboard,
+            parse_mode="HTML"
         )
     elif call.data == "chile":
         keyboard = types.InlineKeyboardMarkup(
@@ -316,23 +304,22 @@ async def callback_inline(call):
         )
         take_bonus_button = types.InlineKeyboardButton(
             text="🔥 Recir bono 🔥",
-            url="https://www.youtube.com/"
+            url="https://1wseqo.life/v3/aggressive-casino?p=nj92"
         )
         keyboard.add(
             take_bonus_button
         )
         await bot.send_photo(
-            photo=open(f"resources/1xslots.jpg", "rb"),
+            photo=open(f"resources/1win_esp.jpg", "rb"),
             chat_id=call.message.chat.id,
-            caption="😎 1XSLOTS - ¡el mejor proyecto para los jugadores de 🇨🇱 Chile! \n\n"
-                 "🚀 ¡Recoge tu paquete de bienvenida con 100 giros gratis y un bono del 100% en tu depósito!\n\n"
-                 "👉 Ventajas del 1XSLOTS Casino: \n"
-                 "⚡️ Bonos diarios\n"
-                 "⚡️ Alto RTP\n"
-                 "⚡️ Cajas de botín con premios increíbles\n"
-                 "⚡️ MUCHOS BONOS SIN DEPÓSITO\n\n"
-                 "Haz clic en el botón de abajo y empieza a jugar 👇",
-            reply_markup=keyboard
+            caption="Únete a 1WIN\n\n" \
+                    "⚡️Retiros rápidos a tarjetas de cualquier país \n" \
+                    "⚡️No se requiere verificación de documentos🪪\n" \
+                    "⚡️No hay límites de edad🙅\n" \
+                    "⚡️Bono de bienvenida del <b><i>500%</i></b> en tu primer depósito \n\n" \
+                    "Promoción - <b>BGGW</b>",
+            reply_markup=keyboard,
+            parse_mode="HTML"
         )
     elif call.data == "ecuador":
         keyboard = types.InlineKeyboardMarkup(
@@ -340,48 +327,22 @@ async def callback_inline(call):
         )
         take_bonus_button = types.InlineKeyboardButton(
             text="🔥 Recir bono 🔥",
-            url="https://www.youtube.com/"
+            url="https://1wseqo.life/v3/aggressive-casino?p=nj92"
         )
         keyboard.add(
             take_bonus_button
         )
         await bot.send_photo(
-            photo=open(f"resources/1xslots.jpg", "rb"),
+            photo=open(f"resources/1win_esp.jpg", "rb"),
             chat_id=call.message.chat.id,
-            caption="😎 1XSLOTS - ¡el mejor proyecto para los jugadores de 🇪🇨 Ecuador! \n\n"
-                 "🚀 ¡Recoge tu paquete de bienvenida con 100 giros gratis y un bono del 100% en tu depósito!\n\n"
-                 "👉 Ventajas del 1XSLOTS Casino: \n"
-                 "⚡️ Bonos diarios\n"
-                 "⚡️ Alto RTP\n"
-                 "⚡️ Cajas de botín con premios increíbles\n"
-                 "⚡️ MUCHOS BONOS SIN DEPÓSITO\n\n"
-                 "Haz clic en el botón de abajo y empieza a jugar 👇",
-            reply_markup=keyboard
-        )
-    elif call.data == "espana":
-        keyboard = types.InlineKeyboardMarkup(
-            row_width=1
-        )
-        take_bonus_button = types.InlineKeyboardButton(
-            text="Registro 😎",
-            url="https://www.youtube.com/"
-        )
-        keyboard.add(
-            take_bonus_button
-        )
-        await bot.send_photo(
-            photo=open(f"resources/casino_infinity_espana.jpg", "rb"),
-            chat_id=call.message.chat.id,
-            caption="😎 Únete a CasinoInfinity\n\n"
-                 "⚡️ Paquete de bienvenida: 100% en el depósito + 200 giros gratis\n\n"
-                 "Beneficios de CasinoInfinity:\n"
-                 "🔥 Alto RTP\n"
-                 "🔥 Bono de recarga de fin de semana: 700 EUR + 50 giros gratis\n"
-                 "🔥 Cashback en vivo: 25% hasta 200 EUR\n"
-                 "🔥 Programa VIP\n"
-                 "🔥 Muchos bonos\n\n"
-                 "Haz clic en el botón de abajo para registrarte y obtener tu bono 👇",
-            reply_markup=keyboard
+            caption="Únete a 1WIN\n\n" \
+                    "⚡️Retiros rápidos a tarjetas de cualquier país \n" \
+                    "⚡️No se requiere verificación de documentos🪪\n" \
+                    "⚡️No hay límites de edad🙅\n" \
+                    "⚡️Bono de bienvenida del <b><i>500%</i></b> en tu primer depósito \n\n" \
+                    "Promoción - <b>BGGW</b>",
+            reply_markup=keyboard,
+            parse_mode="HTML"
         )
     elif call.data == "other_esp":
         keyboard = types.InlineKeyboardMarkup(
@@ -389,23 +350,22 @@ async def callback_inline(call):
         )
         take_bonus_button = types.InlineKeyboardButton(
             text="🔥 Recir bono 🔥",
-            url="https://www.youtube.com/"
+            url="https://1wseqo.life/v3/aggressive-casino?p=nj92"
         )
         keyboard.add(
             take_bonus_button
         )
         await bot.send_photo(
-            photo=open(f"resources/1xslots.jpg", "rb"),
+            photo=open(f"resources/1win_esp.jpg", "rb"),
             chat_id=call.message.chat.id,
-            caption="😎 1XSLOTS - ¡el mejor proyecto para los jugadores de América Latina! \n\n"
-                 "🚀 ¡Recoge tu paquete de bienvenida con 100 giros gratis y un bono del 100% en tu depósito!\n\n"
-                 "👉 Ventajas del 1XSLOTS Casino: \n"
-                 "⚡️ Bonos diarios\n"
-                 "⚡️ Alto RTP\n"
-                 "⚡️ Cajas de botín con premios increíbles\n"
-                 "⚡️ MUCHOS BONOS SIN DEPÓSITO\n\n"
-                 "Haz clic en el botón de abajo y empieza a jugar 👇",
-            reply_markup=keyboard
+            caption="Únete a 1WIN\n\n" \
+                    "⚡️Retiros rápidos a tarjetas de cualquier país \n" \
+                    "⚡️No se requiere verificación de documentos🪪\n" \
+                    "⚡️No hay límites de edad🙅\n" \
+                    "⚡️Bono de bienvenida del <b><i>500%</i></b> en tu primer depósito \n\n" \
+                    "Promoción - <b>BGGW</b>",
+            reply_markup=keyboard,
+            parse_mode="HTML"
         )
     elif call.data == "cz":
         keyboard = types.InlineKeyboardMarkup(
@@ -741,203 +701,21 @@ async def callback_inline(call):
         )
         take_bonus_button = types.InlineKeyboardButton(
             text="🚀 Bonusu AI 🚀",
-            url="https://redirspinner.com/2gLd?p=%2Fregistration%2F"
+            url="https://1wbpqg.top/v3/aggressive-casino?p=ho99"
         )
         keyboard.add(
             take_bonus_button
         )
         await bot.send_photo(
-            photo=open(f"resources/spinbetter.jpg", "rb"),
+            photo=open(f"resources/1win_tr.jpg", "rb"),
             chat_id=call.message.chat.id,
-            caption="😎 Bgaming tarafından Aztec Clusters'da 250 ücretsiz dönüş kazanın\n\n"
-                 "Yapmanız gerekenler:\n"
-                 "⭐️ SPINBETTER'a kaydolun\n"
-                 "⭐️ Promosyon kodunu girin: AZTEC200 (kayıt sonrası)\n\n"
-                 "Promosyon kodunu nerede girmeli?\n"
-                 "⚡️ Mobil Sürüm: Profil > Promosyonlar > Casino VIP Cashback > Bonuslar\n"
-                 "⚡️ PC Sürümü: Profil > Bonuslar ve Hediyeler\n\n"
-                 "SPINBETTER'in Avantajları:\n"
-                 "🔥 Hoşgeldin paketi 56927 TL + 150 Ücretsiz Dönüş\n"
-                 "🔥 Yüksek RTP\n"
-                 "🔥 Sadakat programı\n"
-                 "🔥 Pek çok bonus",
-            reply_markup=keyboard
-        )
-    elif call.data == "fr":
-        keyboard = types.InlineKeyboardMarkup(
-            row_width=2
-        )
-        france_button = types.InlineKeyboardButton(
-            text="France 🇫🇷",
-            callback_data="france"
-        )
-        senegal_button = types.InlineKeyboardButton(
-            text="Sénégal 🇸🇳",
-            callback_data="senegal"
-        )
-        cameroun_button = types.InlineKeyboardButton(
-            text="Cameroun 🇨🇲",
-            callback_data="cameroun"
-        )
-        cotdivoir_button = types.InlineKeyboardButton(
-            text="Côte d'Ivoire 🇨🇮",
-            callback_data="cotdivoir"
-        )
-        benin_button = types.InlineKeyboardButton(
-            text="Bénin 🇧🇯",
-            callback_data="benin"
-        )
-        autres_button = types.InlineKeyboardButton(
-            text="Autres pays",
-            callback_data="autres"
-        )
-        keyboard.add(
-            france_button,
-            senegal_button,
-            cameroun_button,
-            cotdivoir_button,
-            benin_button,
-            autres_button
-        )
-        await bot.send_message(
-            chat_id=call.message.chat.id,
-            text="Choisir un pays:",
-            reply_markup=keyboard
-        )
-    elif call.data == "france":
-        keyboard = types.InlineKeyboardMarkup(
-            row_width=1
-        )
-        take_bonus_button = types.InlineKeyboardButton(
-            text="🚀 Activer le bonus 🚀",
-            url="https://www.youtube.com/"
-        )
-        keyboard.add(
-            take_bonus_button
-        )
-        await bot.send_photo(
-            photo=open(f"resources/luckyhunter.jpg", "rb"),
-            chat_id=call.message.chat.id,
-            caption="😎 Rejoignez LuckyHunter !\n\n"
-                    "🔥 Code promo : LUCKY \n"
-                    "Obtenez 444 free spins et 25000 EUR!\n\n"
-                    "✨ Cashback quotidien jusqu'à 15 %\n"
-                    "✨ 7 % de bonus sur tous les dépôts en crypto\n"
-                    "✨ RTP élevé\n"
-                    "✨ Programme VIP TOP\n"
-                    "✨ Bonus de rechargement\n\n"
-                    "Réclamez votre bonus maintenant 👇👇👇",
-            reply_markup=keyboard
-        )
-    elif call.data == "senegal":
-        keyboard = types.InlineKeyboardMarkup(
-            row_width=1
-        )
-        take_bonus_button = types.InlineKeyboardButton(
-            text="🚀 S'inscrire 🚀",
-            url="https://www.youtube.com/"
-        )
-        keyboard.add(
-            take_bonus_button
-        )
-        await bot.send_photo(
-            photo=open(f"resources/betwinner.jpg", "rb"),
-            chat_id=call.message.chat.id,
-            caption="😎 Rejoignez BetWinner !\n\n"
-                    "🔥 Profite de ton pack de bienvenue : 150 tours gratuits + 200% sur ton dépôt\n\n"
-                    "✨ RTP élevé\n"
-                    "✨ Programme VIP TOP\n"
-                    "✨ Bonus de rechargement\n\n"
-                    "Réclamez votre bonus maintenant 👇👇👇",
-            reply_markup=keyboard
-        )
-    elif call.data == "cameroun":
-        keyboard = types.InlineKeyboardMarkup(
-            row_width=1
-        )
-        take_bonus_button = types.InlineKeyboardButton(
-            text="🚀 S'inscrire 🚀",
-            url="https://www.youtube.com/"
-        )
-        keyboard.add(
-            take_bonus_button
-        )
-        await bot.send_photo(
-            photo=open(f"resources/betwinner.jpg", "rb"),
-            chat_id=call.message.chat.id,
-            caption="😎 Rejoignez BetWinner !\n\n"
-                    "🔥 Profite de ton pack de bienvenue : 150 tours gratuits + 200% sur ton dépôt\n\n"
-                    "✨ RTP élevé\n"
-                    "✨ Programme VIP TOP\n"
-                    "✨ Bonus de rechargement\n\n"
-                    "Réclamez votre bonus maintenant 👇👇👇",
-            reply_markup=keyboard
-        )
-    elif call.data == "cotdivoir":
-        keyboard = types.InlineKeyboardMarkup(
-            row_width=1
-        )
-        take_bonus_button = types.InlineKeyboardButton(
-            text="🚀 S'inscrire 🚀",
-            url="https://www.youtube.com/"
-        )
-        keyboard.add(
-            take_bonus_button
-        )
-        await bot.send_photo(
-            photo=open(f"resources/betwinner.jpg", "rb"),
-            chat_id=call.message.chat.id,
-            caption="😎 Rejoignez BetWinner !\n\n"
-                    "🔥 Profite de ton pack de bienvenue : 150 tours gratuits + 200% sur ton dépôt\n\n"
-                    "✨ RTP élevé\n"
-                    "✨ Programme VIP TOP\n"
-                    "✨ Bonus de rechargement\n\n"
-                    "Réclamez votre bonus maintenant 👇👇👇",
-            reply_markup=keyboard
-        )
-    elif call.data == "benin":
-        keyboard = types.InlineKeyboardMarkup(
-            row_width=1
-        )
-        take_bonus_button = types.InlineKeyboardButton(
-            text="🚀 S'inscrire 🚀",
-            url="https://www.youtube.com/"
-        )
-        keyboard.add(
-            take_bonus_button
-        )
-        await bot.send_photo(
-            photo=open(f"resources/betwinner.jpg", "rb"),
-            chat_id=call.message.chat.id,
-            caption="😎 Rejoignez BetWinner !\n\n"
-                    "🔥 Profite de ton pack de bienvenue : 150 tours gratuits + 200% sur ton dépôt\n\n"
-                    "✨ RTP élevé\n"
-                    "✨ Programme VIP TOP\n"
-                    "✨ Bonus de rechargement\n\n"
-                    "Réclamez votre bonus maintenant 👇👇👇",
-            reply_markup=keyboard
-        )
-    elif call.data == "autres":
-        keyboard = types.InlineKeyboardMarkup(
-            row_width=1
-        )
-        take_bonus_button = types.InlineKeyboardButton(
-            text="🚀 S'inscrire 🚀",
-            url="https://www.youtube.com/"
-        )
-        keyboard.add(
-            take_bonus_button
-        )
-        await bot.send_photo(
-            photo=open(f"resources/betwinner.jpg", "rb"),
-            chat_id=call.message.chat.id,
-            caption="😎 Rejoignez BetWinner !\n\n"
-                    "🔥 Profite de ton pack de bienvenue : 150 tours gratuits + 200% sur ton dépôt\n\n"
-                    "✨ RTP élevé\n"
-                    "✨ Programme VIP TOP\n"
-                    "✨ Bonus de rechargement\n\n"
-                    "Réclamez votre bonus maintenant 👇👇👇",
-            reply_markup=keyboard
+            caption="1WIN'e Katıl\n\n" \
+                    "⚡️Herhangi bir ülkenin kartına hızlı para çekme \n" \
+                    "⚡️Belge doğrulaması gerekli değil🪪\n" \
+                    "⚡️Yaş sınırı yok🙅\n" \
+                    "⚡️Hoşgeldin Bonusu <b><i>%500</i></b> para yatırma bonusu \n\n" \
+                    "Promosyon - <b>BGGW</b>",
+        reply_markup=keyboard
         )
     elif call.data == "rom":
         keyboard = types.InlineKeyboardMarkup(
@@ -1062,21 +840,22 @@ async def callback_inline(call):
         )
         take_bonus_button = types.InlineKeyboardButton(
             text="🚀 Забрать бонус 🚀",
-            url="https://www.youtube.com/"
+            url="https://1warlo.top/casino/list?open=register&p=nwk8"
         )
         keyboard.add(
             take_bonus_button
         )
         await bot.send_photo(
-            photo=open(f"resources/auf.jpg", "rb"),
+            photo=open(f"resources/1win_ru.jpg", "rb"),
             chat_id=call.message.chat.id,
-            caption="😎 Залетай в казино AUF\n\n"
-            "✨ До 20% кешбека\n"
-            "✨ До 300% и 500 FS на первый депозит\n"
-            "✨ Нет лимитов на вывод\n"
-            "✨ Крутая программа лояльности, где нужно раздевать девушек 😜\n\n"
-            "Забирай свой бонус 👇👇👇",
-            reply_markup=keyboard
+            caption="Заходи на 1WIN\n\n"
+                    "⚡️Быстрый вывод на карту любой страны \n"
+                    "⚡️Не требуется подтверждение документов🪪\n"
+                    "⚡️Нет возрастных ограничений🙅\n"
+                    "⚡️Приветсвенный бонус <b><i>500%</i></b> к пополнению \n\n"
+                    "Промо - <b>BGGW</b>",
+            reply_markup=keyboard,
+            parse_mode="HTML"
         )
 
 async def main():
