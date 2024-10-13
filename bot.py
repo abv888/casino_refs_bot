@@ -111,7 +111,7 @@ async def start(message):
     )
     await bot.send_message(
         chat_id=message.chat.id,
-        text="Select language / Выберите язык",
+        text="Select language:",
         reply_markup=keyboard
     )
     # Отправка сообщения через 15 минут
@@ -213,7 +213,7 @@ async def menu(message):
     )
     await bot.send_message(
         chat_id=message.chat.id,
-        text="Select language / Выберите язык",
+        text="Select language:",
         reply_markup=keyboard
     )
 
