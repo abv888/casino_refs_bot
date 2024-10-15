@@ -16,3 +16,4 @@ class User(Base):
     full_name = Column('fullname', String)
     username = Column('username', String)
     telegram_id = Column('telegram_id', Integer)
+    localization = Column('localization', String)

@@ -9,6 +9,12 @@ from dotenv import (
     load_dotenv,
     find_dotenv
 )
+
+from push_locaization import (
+    PUSHES_MINUTES,
+    PUSHES_DAY
+)
+
 load_dotenv(
     find_dotenv()
 )
@@ -21,8 +27,7 @@ from db.engine import (
 
 from db.engine import session_maker
 from db.models import User
-from db.requests import add_user, get_user_by_id, get_all_users
-
+from db.requests import add_user, get_user_by_id, get_all_users, get_localization_for_user, set_localization_for_user
 
 bot = telebot.AsyncTeleBot(
     token=os.getenv("BOT_TOKEN")
@@ -38,7 +43,8 @@ async def start(message):
             user = User(
                 telegram_id=message.from_user.id,
                 full_name=message.from_user.full_name,
-                username=message.from_user.username
+                username=message.from_user.username,
+                localization="en"
             )
             await add_user(
                 session=session,
@@ -116,10 +122,13 @@ async def start(message):
     )
     # Отправка сообщения через 15 минут
     await asyncio.sleep(900)
+    language = await get_localization_for_user(
+        session=session,
+        user_id=message.from_user.id
+    )
     await bot.send_message(
         chat_id=message.chat.id,
-        text="⚡️Bonus will be active only for next 24 hours⚡️\n\n"
-             "Hurry up and take your bonus🎁"
+        text=PUSHES_MINUTES[language][0]
     )
 
 async def send_daily_notification():
@@ -128,21 +137,9 @@ async def send_daily_notification():
         for user in users:
             await bot.send_message(
                 chat_id=user.telegram_id,
-                text="⚡️Bonus will be active only for next 24 hours⚡️\n\n"
-                     "Hurry up and take your bonus🎁"
+                text=PUSHES_DAY[user.localization][0]
             )
 
-# Функция для ежедневной рассылки в 18:00
-# @aiocron.crontab('49 1 * * *')  # cron-синтаксис для ежедневной рассылки в 18:00
-# async def send_daily_message():
-#     async with session_maker() as session:
-#         users = await get_all_users(session)  # Получаем всех пользователей
-#         for user in users:
-#             await bot.send_message(
-#                 chat_id=user.telegram_id,
-#                 text="⚡️Bonus will be active only for next 24 hours⚡️\n\n"
-#                      "Hurry up and take your bonus🎁"
-#             )
 
 @bot.message_handler(commands=['menu'])
 async def menu(message):
@@ -222,6 +219,12 @@ async def menu(message):
 )
 async def callback_inline(call):
     if call.data == "en":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -283,6 +286,12 @@ async def callback_inline(call):
             reply_markup=keyboard
         )
     elif call.data == "pl":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -299,7 +308,7 @@ async def callback_inline(call):
             next_casino_button
         )
         await bot.send_photo(
-            photo=open(f"resources/spinbetter.jpg", "rb"),
+            photo=open(f"resources/spinbetter_pl.png", "rb"),
             chat_id=call.message.chat.id,
             caption="😎 Zgarnij 250 darmowych spinów bez depozytu w grze Aztec Clusters by Bgaming\n\n"
                         "Co musisz zrobić:\n"
@@ -345,6 +354,12 @@ async def callback_inline(call):
             reply_markup=keyboard
         )
     elif call.data == "esp":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -496,6 +511,12 @@ async def callback_inline(call):
             parse_mode="HTML"
         )
     elif call.data == "cz":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -524,6 +545,12 @@ async def callback_inline(call):
             reply_markup=keyboard
         )
     elif call.data == "it":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -585,6 +612,12 @@ async def callback_inline(call):
             reply_markup=keyboard
         )
     elif call.data == "lt":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -639,6 +672,12 @@ async def callback_inline(call):
             reply_markup=keyboard
         )
     elif call.data == "dutch":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -701,6 +740,12 @@ async def callback_inline(call):
             reply_markup=keyboard
         )
     elif call.data == "french":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -717,7 +762,7 @@ async def callback_inline(call):
             next_casino_button
         )
         await bot.send_photo(
-            photo=open(f"resources/spinbetter.jpg", "rb"),
+            photo=open(f"resources/spinbetter_fr.png", "rb"),
             chat_id=call.message.chat.id,
             caption="😎 Obtenez 250 tours gratuits sans dépôt dans Aztec Clusters by Bgaming\n\n"
                  "Voici ce que vous devez faire pour recevoir vos tours gratuits :\n"
@@ -763,6 +808,12 @@ async def callback_inline(call):
             reply_markup=keyboard
         )
     elif call.data == "german":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization="de"
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -779,7 +830,7 @@ async def callback_inline(call):
             next_casino_button
         )
         await bot.send_photo(
-            photo=open(f"resources/spinbetter.jpg", "rb"),
+            photo=open(f"resources/spinbetter_de.png", "rb"),
             chat_id=call.message.chat.id,
             caption="😎 Hol dir 250 Freispiele ohne Einzahlung in Aztec Clusters by Bgaming\n\n"
                  "Das musst du tun, um deine Freispiele zu erhalten:\n"
@@ -824,6 +875,12 @@ async def callback_inline(call):
             reply_markup=keyboard
         )
     elif call.data == "tr":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -847,6 +904,12 @@ async def callback_inline(call):
         parse_mode="HTML"
         )
     elif call.data == "rom":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -875,6 +938,12 @@ async def callback_inline(call):
             reply_markup=keyboard
         )
     elif call.data == "prt":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -903,6 +972,12 @@ async def callback_inline(call):
             reply_markup=keyboard
         )
     elif call.data == "de":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
@@ -919,7 +994,7 @@ async def callback_inline(call):
             next_casino_button
         )
         await bot.send_photo(
-            photo=open(f"resources/spinbetter.jpg", "rb"),
+            photo=open(f"resources/spinbetter_de.png", "rb"),
             chat_id=call.message.chat.id,
             caption="😎 Hol dir 250 Freispiele ohne Einzahlung in Aztec Clusters by Bgaming\n\n"
                  "Das musst du tun, um deine Freispiele zu erhalten:\n"
@@ -964,6 +1039,12 @@ async def callback_inline(call):
             reply_markup=keyboard
         )
     elif call.data == "ru":
+        async with session_maker() as session:
+            await set_localization_for_user(
+                session=session,
+                user_id=call.from_user.id,
+                localization=call.data
+            )
         keyboard = types.InlineKeyboardMarkup(
             row_width=1
         )
