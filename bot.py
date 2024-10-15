@@ -128,7 +128,7 @@ async def start(message):
     )
     await bot.send_message(
         chat_id=message.chat.id,
-        text=PUSHES_MINUTES[language][0]
+        text=PUSHES_MINUTES[language]
     )
 
 async def send_daily_notification():
@@ -137,7 +137,7 @@ async def send_daily_notification():
         for user in users:
             await bot.send_message(
                 chat_id=user.telegram_id,
-                text=PUSHES_DAY[user.localization][0]
+                text=PUSHES_DAY[user.localization]
             )
 
 
