@@ -528,7 +528,7 @@ async def callback_inline(call):
             take_bonus_button
         )
         await bot.send_photo(
-            photo=open(f"resources/spinbetter.jpg", "rb"),
+            photo=open(f"resources/spinbetter_cz.png", "rb"),
             chat_id=call.message.chat.id,
             caption="😎 Získejte 250 bezplatných zatočení bez vkladu ve hře Aztec Clusters by Bgaming\n\n"
                  "Co musíte udělat:\n"
