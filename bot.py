@@ -567,7 +567,7 @@ async def callback_inline(call):
             next_casino_button
         )
         await bot.send_photo(
-            photo=open(f"resources/spinbetter.jpg", "rb"),
+            photo=open(f"resources/spinbetter_it.png", "rb"),
             chat_id=call.message.chat.id,
             caption="😎 Ottieni 250 giri gratis senza deposito in Aztec Clusters di Bgaming\n\n"
                  "Ecco cosa devi fare: \n"
